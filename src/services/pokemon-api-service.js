@@ -8,13 +8,12 @@ export default class PokemonApiService {
         if (!res.ok) {
             throw new Error(`Could not fetch ${url}, received ${res.status}`);
         }
-        const body = await res.json();
-        return body;
+        return await res.json();
     }
 
     async getAllPokemons() {
         const res = await this.getResource(`/pokemon/`);
-        return res.results.map(this._transformPokemon);
+        return res.results; 
     }
 
     async getPokemon(id) {

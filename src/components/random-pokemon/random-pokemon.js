@@ -15,9 +15,13 @@ export default class RandomPokemon extends Component {
         loading: true
     };
 
-    constructor() {
-        super();
+    componentDidMount() {
         this.updatePokemon();
+        this.interval = setInterval(this.updatePokemon, 10000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
     onPokemonLoaded = (pokemon) => {
@@ -35,13 +39,13 @@ export default class RandomPokemon extends Component {
         });
     };
 
-    updatePokemon() {
-        const id = 23132;
+    updatePokemon = () => {
+        const id = Math.floor(Math.random() * 751);
         this.pokemonApiService
         .getPokemon(id)
         .then(this.onPokemonLoaded)
         .catch(this.onError);
-    }
+    };
 
     render() {
         const { pokemon, loading, error } = this.state;
@@ -74,8 +78,10 @@ const PokemonView = ({ pokemon }) => {
     return (
         <React.Fragment>
         <img className="pokemon-image"
+        id="pic"
             src={`https://img.pokemondb.net/sprites/home/normal/${name}.png`} 
-            alt={name}/> 
+            alt={name}
+        /> 
 
         <div>
             <h4>{name}</h4>

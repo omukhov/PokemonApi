@@ -1,27 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Header from '../header';
-import ItemList from '../item-list';
-import PokemonDetails from '../pokemon-details';
+import PokemonPage from '../pokemon-page/pokemon-page';
+
 import RandomPokemon from '../random-pokemon';
 
 import './app.css';
 
-const App = () => {
-    return (
-        <>
-            <Header />
-            <RandomPokemon />
-
-            <div className="row mb2">
-                <div className="col-md-6">
-                    <ItemList />
-                </div>
-                <div className="col-md-6">
-                    <PokemonDetails />
-                </div>
+export default class App extends Component {
+    
+    render() {
+        return (
+            <div className="stardb-app container">
+            
+                <Header />
+                <RandomPokemon />
+                <PokemonPage />
             </div>
-        </>
-    );
+        );
+    }
 };
-
-export default App;
