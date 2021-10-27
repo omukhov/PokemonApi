@@ -16,10 +16,18 @@ export default class PokemonApiService {
         return res.results; 
     }
 
-    async getPokemon(id) {
+    getPokemon = async  (id) => {
         const pokemon = await this.getResource(`/pokemon/${id}`);
         return this._transformPokemon(pokemon);
     }
+
+    getPokemonImage = ({name}) => {
+        return `https://img.pokemondb.net/sprites/home/normal/${name}.png`;
+    };
+
+    getShinyPokemonImage = ({name}) => {
+        return `https://img.pokemondb.net/sprites/home/shiny/${name}.png`;
+    };
 
     _transformPokemon(pokemon) {
         return {

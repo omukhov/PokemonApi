@@ -8,7 +8,8 @@ export default class PokemonDetails extends Component {
   pokemonApiService = new PokemonApiService();
 
   state = {
-    pokemon: null
+    pokemon: null,
+    image: null
   };
 
   componentDidMount() {
@@ -24,26 +25,30 @@ export default class PokemonDetails extends Component {
 
   updatePokemon() {
     
-    const { pokemonId } = this.props;
+    const { pokemonId, getData, getImageUrl } = this.props;
 
     if (!pokemonId) {
       return;
     }
 
-    this.pokemonApiService
-      .getPokemon(pokemonId)
+    getData(pokemonId)
       .then((pokemon) => {
-        this.setState({ pokemon });
+        this.setState({ 
+          pokemon,
+          image: getImageUrl(pokemon)
+         });
     });
   }
 
   render() {
 
+    const { pokemon, image } = this.state;
+    
     if (!this.state.pokemon) {
       return <span>Select a pokemon from a list</span>;
     }
 
-    const { id, name, types, height, weight} = this.state.pokemon;
+    const {  name, types, height, weight } = pokemon;
 
     let pokemonTypes = [];
     types.forEach(type => {
@@ -53,7 +58,7 @@ export default class PokemonDetails extends Component {
     return (
       <div className="person-details card">
         <img className="person-image"
-          src={`https://pokemon-visualguide.com/assets/img/pokemon-sprites/sprites/pokemon/${id}.png`} 
+          src={image} 
           alt={name}/>
 
         <div className="card-body">

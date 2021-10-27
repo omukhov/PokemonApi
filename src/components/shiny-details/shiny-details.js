@@ -8,4 +8,4 @@ const ShinyDetails = () => {
     );
 };
 
-export default ShinyDetails;
+export default ShinyDetails; 
