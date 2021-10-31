@@ -5,7 +5,6 @@ import PokemonPage from '../pokemon-page/pokemon-page';
 import RandomPokemon from '../random-pokemon';
 
 import './app.css';
-
 export default class App extends Component {
     
     render() {

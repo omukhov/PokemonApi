@@ -11,7 +11,7 @@ export default class PokemonApiService {
         return await res.json();
     }
 
-    async getAllPokemons() {
+    getAllPokemons = async () => {
         const res = await this.getResource(`/pokemon/`);
         return res.results; 
     }

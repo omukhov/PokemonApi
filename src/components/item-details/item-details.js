@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PokemonApiService from '../../services/pokemon-api-service';
 
-import './pokemon-details.css';
+import './item-details.css';
 
-export default class PokemonDetails extends Component {
+export default class ItemDetails extends Component {
 
   pokemonApiService = new PokemonApiService();
 
@@ -13,17 +13,17 @@ export default class PokemonDetails extends Component {
   };
 
   componentDidMount() {
-    this.updatePokemon();
+    this.updateItem();
   }
 
   
   componentDidUpdate(prevProps) {
     if (this.props.pokemonId !== prevProps.pokemonId) {
-      this.updatePokemon();
+      this.updateItem();
     }
   }
 
-  updatePokemon() {
+  updateItem() {
     
     const { pokemonId, getData, getImageUrl } = this.props;
 
@@ -44,7 +44,7 @@ export default class PokemonDetails extends Component {
 
     const { pokemon, image } = this.state;
     
-    if (!this.state.pokemon) {
+    if (!pokemon) {
       return <span>Select a pokemon from a list</span>;
     }
 
