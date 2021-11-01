@@ -1,2 +1,3 @@
 import WithData from "./with-data";
-export default WithData;
+import withpokeapiservice from "./with-pokeapi-service";
+export { WithData, withpokeapiservice} ;

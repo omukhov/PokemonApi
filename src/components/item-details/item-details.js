@@ -8,7 +8,7 @@ export default class ItemDetails extends Component {
   pokemonApiService = new PokemonApiService();
 
   state = {
-    pokemon: null,
+    item: null,
     image: null
   };
 
@@ -18,37 +18,36 @@ export default class ItemDetails extends Component {
 
   
   componentDidUpdate(prevProps) {
-    if (this.props.pokemonId !== prevProps.pokemonId) {
+    if (this.props.itemId !== prevProps.itemId) {
       this.updateItem();
     }
   }
 
   updateItem() {
     
-    const { pokemonId, getData, getImageUrl } = this.props;
+    const { itemId, getData, getImageUrl } = this.props;
 
-    if (!pokemonId) {
+    if (!itemId) {
       return;
     }
 
-    getData(pokemonId)
-      .then((pokemon) => {
+    getData(itemId)
+      .then((item) => {
         this.setState({ 
-          pokemon,
-          image: getImageUrl(pokemon)
+          item,
+          image: getImageUrl(item)
          });
     });
   }
 
   render() {
-
-    const { pokemon, image } = this.state;
+    const { item, image } = this.state;
     
-    if (!pokemon) {
+    if (!item) {
       return <span>Select a pokemon from a list</span>;
     }
 
-    const {  name, types, height, weight } = pokemon;
+    const {  name, types, height, weight } = item;
 
     let pokemonTypes = [];
     types.forEach(type => {

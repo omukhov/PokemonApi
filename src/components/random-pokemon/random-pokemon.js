@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import Spinner from '../spinner';
 import PokemonApiService from '../../services/pokemon-api-service';
 
@@ -7,6 +7,14 @@ import './random-pokemon.css';
 import ErrorIndicator from '../error-indicator/error-indicator';
 
 export default class RandomPokemon extends Component {
+
+    static defaultProps = {
+        updateInterval: 10000
+    };
+
+    static propTypes = {
+        updateInterval: PropTypes.number
+    };
 
     pokemonApiService = new PokemonApiService();
 
@@ -16,8 +24,9 @@ export default class RandomPokemon extends Component {
     };
 
     componentDidMount() {
+        const { updateInterval } = this.props;
         this.updatePokemon();
-        this.interval = setInterval(this.updatePokemon, 10000);
+        this.interval = setInterval(this.updatePokemon, updateInterval);
     }
 
     componentWillUnmount() {

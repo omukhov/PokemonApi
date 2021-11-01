@@ -1,12 +1,13 @@
-import React from "react";
 import ItemList from "../item-list";
-import WithData from "../hoc-helpers"; 
-import PokemonApiService from "../../services/pokemon-api-service";
+import { WithData, withpokeapiservice } from "../hoc-helpers"; 
 
-const pokemonApiService = new PokemonApiService(); 
+const mapPokemonMethodsToProps = (pokemonApiService) => {
+    return {
+        getData: pokemonApiService.getAllPokemons
+    };
+};
 
-const { getAllPokemons } = pokemonApiService;
-
-const PokemonList = WithData(ItemList, getAllPokemons);
+const PokemonList = withpokeapiservice(WithData(ItemList), 
+                                    mapPokemonMethodsToProps);
 
 export { PokemonList };
