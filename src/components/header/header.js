@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './header.css';
 
@@ -12,14 +13,14 @@ const Header = () => {
            </h3>
             <ul className="d-flex">
                 <li>
-                    <a href="#">
+                    <Link to="/pokemon" >
                         PokeDex
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#">
+                    <Link to="/shiny">
                         ShinyDex
-                    </a>
+                    </Link>
                 </li>
             </ul>
        </div>

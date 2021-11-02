@@ -40,8 +40,6 @@ export default class PokemonPage extends Component {
                 <div className="col-md-6">
                     <PokemonDetails 
                         itemId={this.state.selectedPokemon}/>
-                    <ShinyPokemonDetails 
-                        itemId={this.state.selectedPokemon}/>
                 </div>
             </div>
         );

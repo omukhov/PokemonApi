@@ -1,2 +1,3 @@
 import PokemonPage from './pokemon-page';
-export default PokemonPage;
+import ShinyPokemonPage from './shiny-pokemon-page';
+export { PokemonPage, ShinyPokemonPage };
