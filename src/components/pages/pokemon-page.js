@@ -1,47 +1,17 @@
-import React, { Component } from 'react';
-import ErrorIndicator from '../error-indicator/error-indicator';
-import PokemonApiService from '../../services/pokemon-api-service';
-import { PokemonList, PokemonDetails, ShinyPokemonDetails } from "../pk-components";
+import React from 'react';
+import { PokemonList } from "../pk-components";
+import { withRouter } from 'react-router-dom';
 
-export default class PokemonPage extends Component {
+const PokemonPage = ({ history }) => {
 
-    pokemonApiService = new PokemonApiService();
-
-    state = {
-        selectedPokemon: 3,
-        hasError: false
-    }
-
-    componentDidCatch() {
-        this.setState({
-            hasError: true
-        });
-    }
-
-    onPokemonSelected = (id) => {
-        this.setState({
-            selectedPokemon: id
-        });
-    };
-
-    render() {
-
-        if (this.state.hasError) {
-            return <ErrorIndicator />;
-        }
-
-        return (
-            <div className="row mb2">
-                <div className="col-md-6">
-                    <PokemonList 
-                        onItemSelected={this.onPokemonSelected}
-                        />
-                </div> 
-                <div className="col-md-6">
-                    <PokemonDetails 
-                        itemId={this.state.selectedPokemon}/>
-                </div>
-            </div>
-        );
-    }
+    return (
+        <React.Fragment>
+            <PokemonList 
+                onItemSelected={(Id) => {
+                    history.push(Id);
+            }} />
+        </React.Fragment>
+    );
 };
+
+export default withRouter(PokemonPage);

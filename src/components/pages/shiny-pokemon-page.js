@@ -3,7 +3,7 @@ import ErrorIndicator from '../error-indicator/error-indicator';
 import PokemonApiService from '../../services/pokemon-api-service';
 import { PokemonList, ShinyPokemonDetails } from "../pk-components";
 
-export default class ShinyPokemonPage extends Component {
+export default class PokemonPage extends Component {
 
     pokemonApiService = new PokemonApiService();
 
